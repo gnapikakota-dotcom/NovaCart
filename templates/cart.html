@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Your cart — NovaCart{% endblock %}
+{% block content %}
+<section class="wrap page-heading"><span class="eyebrow">YOUR PICKS</span><h1>Your <em>shopping bag.</em></h1></section>
+<section class="wrap cart-layout">
+<div class="cart-items">{% for item in items %}<article class="cart-item"><img src="{{ item.image_url }}" alt="{{ item.name }}"><div class="cart-item-info"><a href="{{ url_for('product_detail',slug=item.slug) }}"><b>{{ item.name }}</b></a><small>{{ item.category }}</small><strong>{{ item.price|inr }}</strong><form method="post" action="{{ url_for('update_cart',product_id=item.id) }}" class="quantity-form"><label>Qty <input type="number" name="quantity" value="{{ item.quantity }}" min="0" max="20"></label><button class="text-button">Update</button></form></div><form method="post" action="{{ url_for('remove_from_cart',product_id=item.id) }}"><button class="remove-button" aria-label="Remove item"><i class="fa-regular fa-trash-can"></i></button></form></article>{% else %}<div class="empty-state"><i class="fa-solid fa-bag-shopping"></i><h3>Your bag is waiting</h3><p>It looks like you haven't added anything yet.</p><a class="btn btn-primary" href="{{ url_for('products') }}">Explore products</a></div>{% endfor %}</div>
+{% if items %}<aside class="summary-card"><h3>Order summary</h3><div class="summary-line"><span>Subtotal</span><b>{{ total|inr }}</b></div><div class="summary-line"><span>Delivery</span><b>Calculated at checkout</b></div><div class="summary-total"><span>Total</span><strong>{{ total|inr }}</strong></div><a class="btn btn-primary btn-large full-width" href="{{ url_for('checkout') }}">Continue to checkout</a><a class="continue-link" href="{{ url_for('products') }}">Continue shopping</a><small>Demo payment method: Cash on Delivery.</small></aside>{% endif %}
+</section>
+{% endblock %}

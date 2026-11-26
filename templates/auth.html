@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-wrap"><div class="auth-card"><span class="eyebrow">WELCOME TO NOVACART</span><h1>{{ heading }}</h1><p class="muted">{{ subheading }}</p>
+<form method="post" class="stack-form" novalidate>
+{% block auth_fields %}{% endblock %}
+<button class="btn btn-primary btn-large full-width">{{ button_text }}</button>
+</form><div class="auth-switch">{% block auth_switch %}{% endblock %}</div></div></section>
+{% endblock %}

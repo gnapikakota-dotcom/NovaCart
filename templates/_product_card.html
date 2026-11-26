@@ -1,0 +1,9 @@
+<article class="product-card">
+  <a class="product-photo" href="{{ url_for('product_detail', slug=product.slug) }}">
+    {% if product.featured %}<span class="product-label">FEATURED</span>{% endif %}
+    <img src="{{ product.image_url or 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800' }}" alt="{{ product.name }}" loading="lazy">
+  </a>
+  <div class="product-meta"><span>{{ product.category }}</span>{% if product.stock > 0 %}<span class="stock-dot">In stock</span>{% else %}<span class="out-stock">Sold out</span>{% endif %}</div>
+  <h3><a href="{{ url_for('product_detail', slug=product.slug) }}">{{ product.name }}</a></h3>
+  <div class="product-card-bottom"><strong>{{ product.price|inr }}</strong><a class="round-arrow" href="{{ url_for('product_detail', slug=product.slug) }}" aria-label="View {{ product.name }}"><i class="fa-solid fa-arrow-up-right"></i></a></div>
+</article>

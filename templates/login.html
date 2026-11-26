@@ -1,0 +1,5 @@
+{% extends "auth.html" %}
+{% set heading = "Good to see you." %}{% set subheading = "Sign in to continue to your account." %}{% set button_text = "Sign in" %}
+{% block title %}Sign in — NovaCart{% endblock %}
+{% block auth_fields %}<label>Email address<input type="email" name="email" required autocomplete="email" placeholder="you@example.com"></label><label>Password<input type="password" name="password" required autocomplete="current-password" placeholder="Your password"></label>{% endblock %}
+{% block auth_switch %}New to NovaCart? <a href="{{ url_for('register') }}">Create an account</a>{% endblock %}

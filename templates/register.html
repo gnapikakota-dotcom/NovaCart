@@ -1,0 +1,5 @@
+{% extends "auth.html" %}
+{% set heading = "Create your account." %}{% set subheading = "A few details and you're ready to shop." %}{% set button_text = "Create account" %}
+{% block title %}Create account — NovaCart{% endblock %}
+{% block auth_fields %}<label>Full name<input name="name" required minlength="2" maxlength="80" autocomplete="name" placeholder="Your name"></label><label>Email address<input type="email" name="email" required autocomplete="email" placeholder="you@example.com"></label><label>Password<input type="password" name="password" required minlength="8" autocomplete="new-password" placeholder="At least 8 characters"></label>{% endblock %}
+{% block auth_switch %}Already have an account? <a href="{{ url_for('login') }}">Sign in</a>{% endblock %}

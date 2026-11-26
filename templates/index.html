@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}NovaCart — Discover better{% endblock %}
+{% block content %}
+<section class="hero wrap">
+  <div class="hero-copy">
+    <span class="eyebrow"><i class="fa-solid fa-sparkles"></i> THE EVERYDAY, ELEVATED</span>
+    <h1>Find your next<br><em>favourite thing.</em></h1>
+    <p>Curated essentials, standout tech and considered details — all in one place.</p>
+    <div class="hero-cta"><a class="btn btn-primary btn-large" href="{{ url_for('products') }}">Explore the store <i class="fa-solid fa-arrow-right"></i></a><span><i class="fa-solid fa-shield-heart"></i> Easy, secure demo checkout</span></div>
+    <div class="hero-proof"><div><strong>01</strong><span>Curated picks</span></div><div><strong>02</strong><span>Everyday value</span></div><div><strong>03</strong><span>Simple checkout</span></div></div>
+  </div>
+  <div class="hero-visual"><div class="hero-orb"></div><img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1200" alt="Curated technology and lifestyle products"><div class="hero-note"><span class="note-icon"><i class="fa-solid fa-star"></i></span><span><b>Made for your everyday</b><small>Discover something new</small></span></div></div>
+</section>
+<section class="wrap section-block">
+  <div class="section-head"><div><span class="eyebrow">BROWSE YOUR WAY</span><h2>Explore categories</h2></div><a class="text-link" href="{{ url_for('products') }}">View all products <i class="fa-solid fa-arrow-right"></i></a></div>
+  <div class="category-row">
+    {% for c in categories %}
+    <a class="category-tile" href="{{ url_for('products', category=c.category) }}"><span class="category-symbol"><i class="fa-solid {% if c.category == 'Electronics' %}fa-headphones{% elif c.category == 'Fashion' %}fa-shirt{% elif c.category == 'Home' %}fa-house{% else %}fa-gem{% endif %}"></i></span><b>{{ c.category }}</b><small>Explore collection <i class="fa-solid fa-arrow-up-right-from-square"></i></small></a>
+    {% endfor %}
+  </div>
+</section>
+<section class="section-tint"><div class="wrap section-block">
+  <div class="section-head"><div><span class="eyebrow">THE SHORTLIST</span><h2>Featured finds</h2><p class="muted">A few good things to get you started.</p></div><a class="text-link" href="{{ url_for('products') }}">Shop everything <i class="fa-solid fa-arrow-right"></i></a></div>
+  <div class="product-grid">{% for product in featured %}{% include "_product_card.html" %}{% else %}<p>No featured products yet.</p>{% endfor %}</div>
+</div></section>
+<section class="wrap promo-strip" id="about"><div><span class="eyebrow">A BETTER WAY TO BROWSE</span><h2>Good design. Useful things.<br><em>Zero fuss.</em></h2><p>Explore the collection and find something that fits your life.</p><a class="btn btn-light" href="{{ url_for('products') }}">Start exploring <i class="fa-solid fa-arrow-right"></i></a></div><div class="promo-decoration"><i class="fa-solid fa-bag-shopping"></i></div></section>
+{% endblock %}

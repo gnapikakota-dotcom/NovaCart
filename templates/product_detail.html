@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }} — NovaCart{% endblock %}
+{% block content %}
+<section class="wrap detail-layout">
+  <div class="detail-image"><img src="{{ product.image_url }}" alt="{{ product.name }}"></div>
+  <div class="detail-copy"><a class="back-link" href="{{ url_for('products') }}"><i class="fa-solid fa-arrow-left"></i> Back to shop</a><span class="eyebrow">{{ product.category }}</span><h1>{{ product.name }}</h1><div class="detail-price">{{ product.price|inr }}</div><p>{{ product.description }}</p><div class="detail-stock">{% if product.stock %}<i class="fa-solid fa-circle-check"></i> {{ product.stock }} available{% else %}<i class="fa-solid fa-circle-xmark"></i> Currently unavailable{% endif %}</div>
+  {% if product.stock %}<form method="post" action="{{ url_for('add_to_cart', product_id=product.id) }}" class="add-cart-form"><label>Quantity<input type="number" name="quantity" value="1" min="1" max="{{ [product.stock,20]|min }}"></label><button class="btn btn-primary btn-large">Add to cart <i class="fa-solid fa-bag-shopping"></i></button></form>{% endif %}
+  <div class="detail-assurances"><span><i class="fa-solid fa-lock"></i> Secure account</span><span><i class="fa-solid fa-truck"></i> Delivery details at checkout</span></div></div>
+</section>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Shop all — NovaCart{% endblock %}
+{% block content %}
+<section class="wrap page-heading"><span class="eyebrow">THE NOVACART COLLECTION</span><h1>Shop <em>everything.</em></h1><p class="muted">Find something useful, beautiful or a little bit of both.</p></section>
+<section class="wrap shop-layout">
+  <aside class="filter-panel"><h3>Find your fit</h3><form method="get" action="{{ url_for('products') }}">
+    <label>Search<input name="search" value="{{ search }}" placeholder="Product name..."></label>
+    <label>Category<select name="category"><option value="">All categories</option>{% for c in categories %}<option value="{{ c.category }}" {% if category == c.category %}selected{% endif %}>{{ c.category }}</option>{% endfor %}</select></label>
+    <label>Sort by<select name="sort"><option value="newest" {% if sort=='newest' %}selected{% endif %}>Newest</option><option value="price_low" {% if sort=='price_low' %}selected{% endif %}>Price: low to high</option><option value="price_high" {% if sort=='price_high' %}selected{% endif %}>Price: high to low</option><option value="name" {% if sort=='name' %}selected{% endif %}>Name</option></select></label>
+    <button class="btn btn-primary full-width">Apply filters</button><a class="reset-link" href="{{ url_for('products') }}">Clear filters</a>
+  </form></aside>
+  <div class="shop-results"><div class="results-top"><span>{{ products|length }} products found</span><span>Thoughtfully selected for you</span></div><div class="product-grid">{% for product in products %}{% include "_product_card.html" %}{% else %}<div class="empty-state"><i class="fa-solid fa-box-open"></i><h3>No products found</h3><p>Try another search or clear your filters.</p><a class="btn btn-primary" href="{{ url_for('products') }}">View all products</a></div>{% endfor %}</div></div>
+</section>
+{% endblock %}
